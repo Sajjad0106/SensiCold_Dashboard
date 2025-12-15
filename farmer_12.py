@@ -80,6 +80,7 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         text-align: center;
+        color: #0f172a;
     }
     h1, h2, h3 { color: #1e293b; }
             
@@ -614,9 +615,4 @@ with main_tabs[1]:
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
-
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
-
-
-
-
