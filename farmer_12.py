@@ -20,29 +20,23 @@ from PIL import Image, ImageDraw, ImageFont
 import streamlit.components.v1 as components
 
 # ------------------------------
-# Background Image Function
+# Background Image Function (Fixed for Cloud)
 # ------------------------------
-def add_bg_from_local(image_file):
-    try:
-        with open(image_file, "rb") as f:
-            data = f.read()
-        encoded = base64.b64encode(data).decode()
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("data:image/png;base64,{encoded}");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    except FileNotFoundError:
-        pass
+def add_bg_from_url(url):
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("{url}");
+             background-size: cover;
+             background-position: center;
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 
 # --- CONFIGURATION ---
 st.set_page_config(
@@ -51,7 +45,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-    
+
 # --- MainMenu and Footer Hide ---
 hide_st_style = """
             <style>
@@ -62,7 +56,8 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
-add_bg_from_url("https://github.com/Sajjad0106/SensiCold_Dashboard/blob/750129f6ca806b1412e3dc63250cc9340eb460e4/background.jpg")
+# Set background using the RAW GitHub Link
+add_bg_from_url("https://raw.githubusercontent.com/Sajjad0106/SensiCold_Dashboard/main/background.jpg")
 
 # --- SIMPLIFIED CSS ---
 st.markdown("""
@@ -624,4 +619,5 @@ with main_tabs[1]:
                     """, unsafe_allow_html=True)
 
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
+
 
