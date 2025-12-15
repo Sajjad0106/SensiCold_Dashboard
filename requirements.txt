@@ -1,0 +1,10 @@
+streamlit
+pyrebase4
+pandas
+plotly
+Pillow
+scipy
+numpy
+matplotlib
+seaborn
+requests
