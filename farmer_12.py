@@ -54,6 +54,16 @@ def add_bg_from_url(url):
          unsafe_allow_html=True
      )
 
+# --- MainMenu and Footer Hide ---
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 # Your specific GitHub Raw Link
 add_bg_from_url("https://raw.githubusercontent.com/Sajjad0106/SensiCold_Dashboard/main/background.jpg")
 
@@ -616,3 +626,4 @@ with main_tabs[1]:
                     </div>
                     """, unsafe_allow_html=True)
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
+
