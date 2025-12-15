@@ -144,7 +144,7 @@ if st.session_state.authenticated:
 # 🔐 Unauthenticated View (Owner Only)
 # -------------------------------------
 else:
-    with st.expander("---", expanded=True):
+    with st.expander("---", expanded=Flase):
         # st.markdown("""<h6 style='text-align:left; color: #607D8B; font-weight: bold;font-size: 15px;'>
         #     This portal is exclusively for System Owners to manage and monitor their SensiCold installations.
         #     Owners have elevated privileges to configure system settings, view comprehensive analytics, and manage users.
@@ -241,5 +241,6 @@ else:
                         else:
 
                             st.error(f"Error: {error_message}")
+
 
 
