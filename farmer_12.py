@@ -51,8 +51,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-if os.path.exists("sensicold logo.png"):
-    st.image("sensicold logo.png", use_container_width=True)
     
 # --- MainMenu and Footer Hide ---
 hide_st_style = """
@@ -625,4 +623,5 @@ with main_tabs[1]:
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
+
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
