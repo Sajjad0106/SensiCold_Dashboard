@@ -10,3 +10,4 @@ seaborn
 requests
 python-jwt
 pycryptodome
+setuptools
