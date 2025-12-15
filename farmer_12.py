@@ -20,12 +20,22 @@ from PIL import Image, ImageDraw, ImageFont
 import streamlit.components.v1 as components
 
 # ------------------------------
-# Background Image Function (Fixed for Cloud)
+# FAIL-SAFE BACKGROUND FUNCTION
 # ------------------------------
 def add_bg_from_url(url):
     st.markdown(
          f"""
          <style>
+         /* Target the main view container */
+         [data-testid="stAppViewContainer"] {{
+             background-image: url("{url}");
+             background-size: cover;
+             background-position: center;
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+         }}
+         
+         /* Target the root app (Backup) */
          .stApp {{
              background-image: url("{url}");
              background-size: cover;
@@ -33,30 +43,18 @@ def add_bg_from_url(url):
              background-repeat: no-repeat;
              background-attachment: fixed;
          }}
+
+         /* IMPORTANT: Make the text box transparent! 
+            If this is 1.0 (solid), it will cover your background. */
+         .main {{
+             background-color: rgba(255,255,255,0.5) !important; 
+         }}
          </style>
          """,
          unsafe_allow_html=True
      )
 
-# --- CONFIGURATION ---
-st.set_page_config(
-    page_title="SensiCold - Master Dashboard",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
-
-# --- MainMenu and Footer Hide ---
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
-
-# Set background using the RAW GitHub Link
+# Your specific GitHub Raw Link
 add_bg_from_url("https://raw.githubusercontent.com/Sajjad0106/SensiCold_Dashboard/main/background.jpg")
 
 # --- SIMPLIFIED CSS ---
@@ -619,5 +617,6 @@ with main_tabs[1]:
                     """, unsafe_allow_html=True)
 
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
+
 
 
