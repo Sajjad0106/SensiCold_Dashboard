@@ -21,32 +21,25 @@ from PIL import Image, ImageDraw, ImageFont
 import streamlit.components.v1 as components
 
 # ------------------------------
-# Background Image Function
+# Background Image Function (Fixed)
 # ------------------------------
-def add_bg_from_local(image_file):
-    try:
-        with open(image_file, "rb") as f:
-            data = f.read()
-        encoded = base64.b64encode(data).decode()
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("data:image/png;base64,{encoded}");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    except FileNotFoundError:
-        st.warning("Background image not found. Using default background.")
+def add_bg_from_url(url):
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("{url}");
+             background-size: cover;
+             background-position: center;
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 
-# Set background
-add_bg_from_url("https://github.com/Sajjad0106/SensiCold_Dashboard/blob/750129f6ca806b1412e3dc63250cc9340eb460e4/background.jpg")
+add_bg_from_url("https://raw.githubusercontent.com/Sajjad0106/SensiCold_Dashboard/main/background.jpg")
 
 # --- SIMPLIFIED CSS ---
 st.markdown("""
@@ -250,3 +243,4 @@ else:
                         else:
 
                             st.error(f"Error: {error_message}")
+
