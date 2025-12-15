@@ -62,8 +62,7 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
-# Set background (ensure 'ice2.jpg' exists or remove this line)
-add_bg_from_local("background.jpg")
+add_bg_from_url("https://github.com/Sajjad0106/SensiCold_Dashboard/blob/750129f6ca806b1412e3dc63250cc9340eb460e4/background.jpg")
 
 # --- SIMPLIFIED CSS ---
 st.markdown("""
@@ -625,3 +624,4 @@ with main_tabs[1]:
                     """, unsafe_allow_html=True)
 
                     st.button(f"Book Deal {d['Route']}", key=d['Route'])
+
