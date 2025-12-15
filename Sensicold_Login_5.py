@@ -21,25 +21,32 @@ from PIL import Image, ImageDraw, ImageFont
 import streamlit.components.v1 as components
 
 # ------------------------------
-# Background Image Function (Fixed)
+# Background Image Function
 # ------------------------------
-def add_bg_from_url(url):
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("{url}");
-             background-size: cover;
-             background-position: center;
-             background-repeat: no-repeat;
-             background-attachment: fixed;
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
+def add_bg_from_local(image_file):
+    try:
+        with open(image_file, "rb") as f:
+            data = f.read()
+        encoded = base64.b64encode(data).decode()
+        st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("data:image/png;base64,{encoded}");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+    except FileNotFoundError:
+        st.warning("Background image not found. Using default background.")
 
-add_bg_from_url("https://raw.githubusercontent.com/Sajjad0106/SensiCold_Dashboard/main/background.jpg")
+# Set background
+add_bg_from_local("background.jpg")
 
 # --- SIMPLIFIED CSS ---
 st.markdown("""
@@ -53,6 +60,8 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         text-align: center;
+        color: #0f172a;
+
     }
     h1, h2, h3 { color: #1e293b; }
     
@@ -144,7 +153,7 @@ if st.session_state.authenticated:
 # 🔐 Unauthenticated View (Owner Only)
 # -------------------------------------
 else:
-    with st.expander("---", expanded=Flase):
+    with st.expander("---", expanded=True):
         # st.markdown("""<h6 style='text-align:left; color: #607D8B; font-weight: bold;font-size: 15px;'>
         #     This portal is exclusively for System Owners to manage and monitor their SensiCold installations.
         #     Owners have elevated privileges to configure system settings, view comprehensive analytics, and manage users.
@@ -239,8 +248,4 @@ else:
                         if "EMAIL_EXISTS" in str(error_message):
                             st.error("Email already exists. Try logging in.")
                         else:
-
                             st.error(f"Error: {error_message}")
-
-
-
