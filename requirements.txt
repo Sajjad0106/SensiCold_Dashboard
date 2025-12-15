@@ -8,3 +8,5 @@ numpy
 matplotlib
 seaborn
 requests
+python-jwt
+pycryptodome
