@@ -46,7 +46,7 @@ def add_bg_from_local(image_file):
         st.warning("Background image not found. Using default background.")
 
 # Set background
-add_bg_from_local("background.jpg")
+add_bg_from_url("https://github.com/Sajjad0106/SensiCold_Dashboard/blob/750129f6ca806b1412e3dc63250cc9340eb460e4/background.jpg")
 
 # --- SIMPLIFIED CSS ---
 st.markdown("""
@@ -248,4 +248,5 @@ else:
                         if "EMAIL_EXISTS" in str(error_message):
                             st.error("Email already exists. Try logging in.")
                         else:
+
                             st.error(f"Error: {error_message}")
